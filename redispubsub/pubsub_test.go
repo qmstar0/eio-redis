@@ -1,10 +1,10 @@
-package pubsub_test
+package redispubsub_test
 
 import (
 	"context"
 	"github.com/go-redis/redis/v8"
 	"github.com/qmstar0/eio"
-	"github.com/qmstar0/eio-redis/pubsub"
+	"github.com/qmstar0/eio-redis/redispubsub"
 	"testing"
 	"time"
 )
@@ -49,9 +49,9 @@ func TestNewRedisPublisherAndRedisSubscriber(t *testing.T) {
 	)
 	defer cc()
 
-	pub := pubsub.NewRedisPublisher(redisCli)
+	pub := redispubsub.NewRedisPublisher(redisCli)
 	defer pub.Close()
-	sub := pubsub.NewRedisSubscriber(redisCli)
+	sub := redispubsub.NewRedisSubscriber(redisCli)
 	defer sub.Close()
 
 	msgCh, err := sub.Subscribe(ctx, "test")
